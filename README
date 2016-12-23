@@ -1,0 +1,16 @@
+1. Inflact UFS file-system related code from the corresponded Linux kernel sources
+ tar Jxf linux-3.9.4.tar.xz linux-3.9.4/fs/ufs
+
+2. Prepare the UFS file-system sources
+ mv linux-3.9.4/fs/ufs ufs-3.9.4
+ cp -av Makefile ufs-3.9.4
+ tar cfz ufs-3.9.4.tar.gz ufs-3.9.4
+
+3. Put the .spec, *.patch and sources *.tar.gz into corresponded rpmbuild directories: %{BUILDROOT}/SPECS and %{BUILDROOT}/SOURCES
+where:
+ %{BUILDROOT}=/root/rpmbuild (on RHEL/CentOS 6.x)
+ %{BUILDROOT}=/usr/src/redhat (on RHEL/CentOS 5.x)
+
+4. Run the package build
+ rpmbuild -ba --define="kversion `uname -r`" --define="name_suff -xen" rpmbuild/SPECS/ufs-kmod.spec
+ rpmbuild -ba --define="kversion `uname -r`" --define="name_suff -uek" --define="release 1.onapp" rpmbuild/SPECS/ufs-kmod.spec

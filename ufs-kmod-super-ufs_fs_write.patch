@@ -1,0 +1,11 @@
+--- super.c	2012-09-15 01:28:08.000000000 +0300
++++ super.c.patched	2012-10-10 13:02:00.000000000 +0300
+@@ -94,6 +94,8 @@
+ #include "swab.h"
+ #include "util.h"
+ 
++#define CONFIG_UFS_FS_WRITE
++
+ void lock_ufs(struct super_block *sb)
+ {
+ #if defined(CONFIG_SMP) || defined (CONFIG_PREEMPT)
